@@ -1,0 +1,9 @@
+{
+  "name": "Training Ledger",
+  "short_name": "Ledger",
+  "description": "A personal local-first gym workout tracker.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#3e6d57"
+}
