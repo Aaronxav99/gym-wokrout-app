@@ -17,7 +17,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <aside className="desk-rail" aria-label="Primary navigation">
       <Link href="/" className="brand-lockup"><img src={logo} alt="Training Ledger" /><span>TRAINING<br/><em>LEDGER</em></span></Link>
       <nav>{navItems.map(([href, label, Icon]) => <Link key={href} href={href} className={`rail-link ${location === href ? "is-active" : ""}`}><Icon size={18}/><span>{label}</span></Link>)}</nav>
-      <div className="rail-status"><span className={`status-dot ${connection}`}/>{connection === "connected" ? "API connected" : connection === "checking" ? "Checking local API" : "Local workout log"}</div>
+      <div className="rail-status"><span className={`status-dot ${connection}`}/>{connection === "cloud" ? "Private cloud record" : connection === "checking" ? "Opening private record" : "Local workout log"}</div>
     </aside>
     <header className="mobile-header"><Link href="/" className="brand-lockup"><img src={logo} alt="Training Ledger" /><span>TRAINING<br/><em>LEDGER</em></span></Link><Link href="/settings" aria-label="Open settings"><Settings size={21}/></Link></header>
     <main className="ledger-main">
