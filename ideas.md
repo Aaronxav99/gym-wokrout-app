@@ -75,3 +75,6 @@ The mark is a compact **offset plate-and-rule glyph**: a square training card in
 - Every route carries the offset plate-and-rule glyph with the Fraunces/DM Sans Training Ledger wordmark as a persistent product anchor.
 - Logged work uses label-first metric rows, tabular numerals, and square Ledger stamps; generic decorative icons remain secondary.
 - Ledger Green remains reserved for primary actions, completed work, and progress signals, while planned and empty states rely on ink, limestone, rules, and labels.
+- Signed-out protected routes retain their workout context through route-specific record cues, rather than collapsing into a generic account portal.
+- The offset plate-and-rule glyph stays geometric and spare: one square card, one heavy horizontal rule, and no illustrative fitness or clipboard detail.
+- Large account-entry surfaces read as ledger sheets through section indexes, ruled bands, and factual training-record language.

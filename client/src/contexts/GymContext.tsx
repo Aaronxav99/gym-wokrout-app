@@ -34,6 +34,8 @@ type ContextValue = {
   addExerciseToSession: (sessionId: string, exercise: Exercise) => Promise<void>;
   addSet: (sessionId: string, performedExerciseId: string, set: Omit<LoggedSet, "id" | "remoteId">) => Promise<void>;
   removeSet: (sessionId: string, performedExerciseId: string, setId: string) => Promise<void>;
+  removeExerciseFromSession: (sessionId: string, performedExerciseId: string) => Promise<void>;
+  removeSession: (sessionId: string) => Promise<void>;
   completeWorkout: (sessionId: string) => Promise<void>;
   addBodyWeight: (weightGrams: number, date?: string) => Promise<void>;
   updateProfile: (displayName: string, unitSystem: "kg" | "lb") => void;
@@ -118,6 +120,12 @@ export function GymProvider({ children }: { children: ReactNode }) {
     },
     async removeSet(sessionId, performedExerciseId, setId) {
       setState((current) => ({ ...current, sessions: current.sessions.map((item) => item.id === sessionId ? { ...item, exercises: item.exercises.map((exercise) => exercise.id === performedExerciseId ? { ...exercise, sets: exercise.sets.filter((set) => set.id !== setId) } : exercise) } : item) }));
+    },
+    async removeExerciseFromSession(sessionId, performedExerciseId) {
+      setState((current) => ({ ...current, sessions: current.sessions.map((item) => item.id === sessionId ? { ...item, exercises: item.exercises.filter((exercise) => exercise.id !== performedExerciseId) } : item) }));
+    },
+    async removeSession(sessionId) {
+      setState((current) => ({ ...current, sessions: current.sessions.filter((item) => item.id !== sessionId) }));
     },
     async completeWorkout(sessionId) {
       setState((current) => ({ ...current, sessions: current.sessions.map((item) => item.id === sessionId ? { ...item, status: "completed" } : item) }));

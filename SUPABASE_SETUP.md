@@ -26,3 +26,15 @@ window.__TRAINING_LEDGER_SUPABASE__ = {
 After GitHub Pages finishes deploying, open the app in a private browser window. Create an account, confirm the email if Supabase requests it, sign in, add a workout, refresh the page, and then sign in on a second device. The same records should appear. Each user receives an independent row in `training_records`.
 
 > The free tier is appropriate for a small group, but free project limits and inactivity behavior can change. Export the record locally from the Progress page as an additional backup.
+
+## 5. Restrict account creation to you, or to you plus one person
+
+The app can show the account-creation screen to a visitor, but browser code must never be trusted to decide who may register. To enforce access in Supabase itself, open **SQL Editor → New query**, open `supabase/restrict-to-approved-emails.sql`, replace `replace-with-your-email@example.com` with your existing account email, and run the complete query. That makes the site **owner-only** for all future registrations.
+
+To allow exactly one additional person, also uncomment the second `insert` statement and replace its placeholder with that person’s email before running the query. Only the listed addresses can then create a new account; everyone else receives a rejected registration. Do not place passwords, service-role keys, or any other secret in this SQL file.
+
+> Supabase allows new-user creation to be disabled globally, and its documentation cautions that a failing `auth.users` trigger can block sign-ups. This project uses a narrow before-insert trigger deliberately, so test the permitted second email in an incognito browser after you run the query.[1]
+
+## References
+
+[1]: https://supabase.com/docs/guides/auth/managing-user-data "Supabase — User Management"

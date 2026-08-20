@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async signUp(email, password, displayName) {
       if (!supabase) return { error: "Cloud accounts have not been configured yet." };
       const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { display_name: displayName } } });
-      if (error) return { error: error.message };
+      if (error) return { error: error.message.toLowerCase().includes("database error saving new user") ? "This Training Ledger is private. Only an email address approved by its owner can create an account." : error.message };
       return { confirmationNeeded: !data.session };
     },
     async signOut() {
